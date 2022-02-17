@@ -1,0 +1,7 @@
+делать на WinForms
+
+учет товаров в магазине
+
+  <connectionStrings>
+    <add name="DBConnection" connectionString="data source=HOME-PC;initial catalog=GoodsInShop;integrated security=True;MultipleActiveResultSets=True;" providerName="System.Data.SqlClient"/>
+  </connectionStrings>

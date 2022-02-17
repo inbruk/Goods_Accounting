@@ -1,0 +1,20 @@
+Как запускать: 
+
+- в CreateDatabaseApp/*App.config поменять коннекшн стринг на ваш
+
+- запустить там экзешник, он создаст БД GoodsInShop 
+  и заполнит ее необходимыми для работы программы данными, 
+  если не получилось запустить скрипт из CreateDatabaseScript в ManagementStudio
+
+- запустить скрипт из FillDatabaseWithDefaultAndTestData в ManagementStudio (там теперь только тестовые данные),
+  этот пункт можно и не выполнять, но тогда тестовые данные придется создавать в WinForms программе вручную
+
+- в CreateDatabaseApp/*App.config поменять коннекшн стринг на ваш
+
+- запустить winforms приложение HomeWorkCSharp.App.exe
+
+
+
+
+
+

@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GoodsInShop.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="GoodsInShopStoreContainer">
+    <EntitySet Name="GoodsDescription" EntityType="GoodsInShop.Store.GoodsDescription" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Contractor" EntityType="GoodsInShop.Store.Contractor" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GoodsRecords" EntityType="GoodsInShop.Store.GoodsRecords" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ContractorType" EntityType="GoodsInShop.Store.ContractorType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GoodsRecordsType" EntityType="GoodsInShop.Store.GoodsRecordsType" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ContractorContractorType" Association="GoodsInShop.Store.ContractorContractorType">
+      <End Role="Contractor" EntitySet="Contractor" />
+      <End Role="ContractorType" EntitySet="ContractorType" />
+    </AssociationSet>
+    <AssociationSet Name="GoodsRecordsContractor" Association="GoodsInShop.Store.GoodsRecordsContractor">
+      <End Role="GoodsRecords" EntitySet="GoodsRecords" />
+      <End Role="Contractor" EntitySet="Contractor" />
+    </AssociationSet>
+    <AssociationSet Name="GoodsRecordsGoodsRecordsType" Association="GoodsInShop.Store.GoodsRecordsGoodsRecordsType">
+      <End Role="GoodsRecords" EntitySet="GoodsRecords" />
+      <End Role="GoodsRecordsType" EntitySet="GoodsRecordsType" />
+    </AssociationSet>
+    <AssociationSet Name="GoodsRecordsGoodsDescription" Association="GoodsInShop.Store.GoodsRecordsGoodsDescription">
+      <End Role="GoodsRecords" EntitySet="GoodsRecords" />
+      <End Role="GoodsDescription" EntitySet="GoodsDescription" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="GoodsDescription">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CurrentPrice" Type="decimal" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Contractor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="EMail" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ContractorTypeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GoodsRecords">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ActionPrice" Type="decimal" Nullable="true" />
+    <Property Name="ActionDateTime" Type="datetime" Nullable="true" />
+    <Property Name="Amount" Type="int" Nullable="false" />
+    <Property Name="ContractorId" Type="int" Nullable="true" />
+    <Property Name="GoodsRecordsTypeId" Type="int" Nullable="false" />
+    <Property Name="GoodsDescriptionId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContractorType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GoodsRecordsType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="ContractorContractorType">
+    <End Role="Contractor" Type="GoodsInShop.Store.Contractor" Multiplicity="*" />
+    <End Role="ContractorType" Type="GoodsInShop.Store.ContractorType" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="ContractorType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contractor">
+        <PropertyRef Name="ContractorTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GoodsRecordsContractor">
+    <End Role="GoodsRecords" Type="GoodsInShop.Store.GoodsRecords" Multiplicity="*" />
+    <End Role="Contractor" Type="GoodsInShop.Store.Contractor" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Contractor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GoodsRecords">
+        <PropertyRef Name="ContractorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GoodsRecordsGoodsRecordsType">
+    <End Role="GoodsRecords" Type="GoodsInShop.Store.GoodsRecords" Multiplicity="*" />
+    <End Role="GoodsRecordsType" Type="GoodsInShop.Store.GoodsRecordsType" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="GoodsRecordsType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GoodsRecords">
+        <PropertyRef Name="GoodsRecordsTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GoodsRecordsGoodsDescription">
+    <End Role="GoodsRecords" Type="GoodsInShop.Store.GoodsRecords" Multiplicity="*" />
+    <End Role="GoodsDescription" Type="GoodsInShop.Store.GoodsDescription" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="GoodsDescription">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GoodsRecords">
+        <PropertyRef Name="GoodsDescriptionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GoodsInShop" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="GoodsInShopContainer">
+          <EntitySet Name="GoodsDescription" EntityType="GoodsInShop.GoodsDescription" />
+          <EntitySet Name="Contractor" EntityType="GoodsInShop.Contractor" />
+          <EntitySet Name="GoodsRecords" EntityType="GoodsInShop.GoodsRecords" />
+          <EntitySet Name="ContractorType" EntityType="GoodsInShop.ContractorType" />
+          <EntitySet Name="GoodsRecordsType" EntityType="GoodsInShop.GoodsRecordsType" />
+          <AssociationSet Name="ContractorContractorType" Association="GoodsInShop.ContractorContractorType">
+            <End Role="Contractor" EntitySet="Contractor" />
+            <End Role="ContractorType" EntitySet="ContractorType" />
+          </AssociationSet>
+          <AssociationSet Name="GoodsRecordsContractor" Association="GoodsInShop.GoodsRecordsContractor">
+            <End Role="GoodsRecords" EntitySet="GoodsRecords" />
+            <End Role="Contractor" EntitySet="Contractor" />
+          </AssociationSet>
+          <AssociationSet Name="GoodsRecordsGoodsRecordsType" Association="GoodsInShop.GoodsRecordsGoodsRecordsType">
+            <End Role="GoodsRecords" EntitySet="GoodsRecords" />
+            <End Role="GoodsRecordsType" EntitySet="GoodsRecordsType" />
+          </AssociationSet>
+          <AssociationSet Name="GoodsRecordsGoodsDescription" Association="GoodsInShop.GoodsRecordsGoodsDescription">
+            <End Role="GoodsRecords" EntitySet="GoodsRecords" />
+            <End Role="GoodsDescription" EntitySet="GoodsDescription" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="GoodsDescription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="CurrentPrice" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="GoodsRecords" Relationship="GoodsInShop.GoodsRecordsGoodsDescription" FromRole="GoodsDescription" ToRole="GoodsRecords" />
+        </EntityType>
+        <EntityType Name="Contractor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="true" />
+          <Property Name="EMail" Type="String" Nullable="true" />
+          <NavigationProperty Name="ContractorType" Relationship="GoodsInShop.ContractorContractorType" FromRole="Contractor" ToRole="ContractorType" />
+          <Property Name="ContractorTypeId" Type="Int32" Nullable="false" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <NavigationProperty Name="GoodsRecords" Relationship="GoodsInShop.GoodsRecordsContractor" FromRole="Contractor" ToRole="GoodsRecords" />
+        </EntityType>
+        <EntityType Name="GoodsRecords">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="ActionPrice" Type="Decimal" Nullable="true" />
+          <Property Name="ActionDateTime" Type="DateTime" Nullable="true" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Contractor" Relationship="GoodsInShop.GoodsRecordsContractor" FromRole="GoodsRecords" ToRole="Contractor" />
+          <Property Name="ContractorId" Type="Int32" Nullable="true" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <NavigationProperty Name="GoodsRecordsType" Relationship="GoodsInShop.GoodsRecordsGoodsRecordsType" FromRole="GoodsRecords" ToRole="GoodsRecordsType" />
+          <Property Name="GoodsRecordsTypeId" Type="Int32" Nullable="false" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <NavigationProperty Name="GoodsDescription" Relationship="GoodsInShop.GoodsRecordsGoodsDescription" FromRole="GoodsRecords" ToRole="GoodsDescription" />
+          <Property Name="GoodsDescriptionId" Type="Int32" Nullable="false" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        </EntityType>
+        <EntityType Name="ContractorType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="Value" Type="String" Nullable="false" />
+          <NavigationProperty Name="Contractor" Relationship="GoodsInShop.ContractorContractorType" FromRole="ContractorType" ToRole="Contractor" />
+        </EntityType>
+        <EntityType Name="GoodsRecordsType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="Value" Type="String" Nullable="false" />
+          <NavigationProperty Name="GoodsRecords" Relationship="GoodsInShop.GoodsRecordsGoodsRecordsType" FromRole="GoodsRecordsType" ToRole="GoodsRecords" />
+        </EntityType>
+        <Association Name="ContractorContractorType">
+          <End Type="GoodsInShop.Contractor" Role="Contractor" Multiplicity="*" />
+          <End Type="GoodsInShop.ContractorType" Role="ContractorType" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="ContractorType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contractor">
+              <PropertyRef Name="ContractorTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GoodsRecordsContractor">
+          <End Type="GoodsInShop.GoodsRecords" Role="GoodsRecords" Multiplicity="*" />
+          <End Type="GoodsInShop.Contractor" Role="Contractor" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Contractor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GoodsRecords">
+              <PropertyRef Name="ContractorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GoodsRecordsGoodsRecordsType">
+          <End Type="GoodsInShop.GoodsRecords" Role="GoodsRecords" Multiplicity="*" />
+          <End Type="GoodsInShop.GoodsRecordsType" Role="GoodsRecordsType" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsRecordsType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GoodsRecords">
+              <PropertyRef Name="GoodsRecordsTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GoodsRecordsGoodsDescription">
+          <End Type="GoodsInShop.GoodsRecords" Role="GoodsRecords" Multiplicity="*" />
+          <End Type="GoodsInShop.GoodsDescription" Role="GoodsDescription" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsDescription">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GoodsRecords">
+              <PropertyRef Name="GoodsDescriptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GoodsInShopStoreContainer" CdmEntityContainer="GoodsInShopContainer">
+    <EntitySetMapping Name="GoodsDescription">
+      <EntityTypeMapping TypeName="IsTypeOf(GoodsInShop.GoodsDescription)">
+        <MappingFragment StoreEntitySet="GoodsDescription">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CurrentPrice" ColumnName="CurrentPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contractor">
+      <EntityTypeMapping TypeName="IsTypeOf(GoodsInShop.Contractor)">
+        <MappingFragment StoreEntitySet="Contractor">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="EMail" ColumnName="EMail" />
+          <ScalarProperty Name="ContractorTypeId" ColumnName="ContractorTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GoodsRecords">
+      <EntityTypeMapping TypeName="IsTypeOf(GoodsInShop.GoodsRecords)">
+        <MappingFragment StoreEntitySet="GoodsRecords">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ActionPrice" ColumnName="ActionPrice" />
+          <ScalarProperty Name="ActionDateTime" ColumnName="ActionDateTime" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="ContractorId" ColumnName="ContractorId" />
+          <ScalarProperty Name="GoodsRecordsTypeId" ColumnName="GoodsRecordsTypeId" />
+          <ScalarProperty Name="GoodsDescriptionId" ColumnName="GoodsDescriptionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContractorType">
+      <EntityTypeMapping TypeName="IsTypeOf(GoodsInShop.ContractorType)">
+        <MappingFragment StoreEntitySet="ContractorType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GoodsRecordsType">
+      <EntityTypeMapping TypeName="IsTypeOf(GoodsInShop.GoodsRecordsType)">
+        <MappingFragment StoreEntitySet="GoodsRecordsType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer>
+    <edmx:Connection>
+      <DesignerInfoPropertySet xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{17DA2FB9-D01C-4889-B072-7CEB87C5F83D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HomeWorkCSharp.App</RootNamespace>
+    <AssemblyName>HomeWorkCSharp.App</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ContractorEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ContractorEditForm.Designer.cs">
+      <DependentUpon>ContractorEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesignTimeCheckerWorksInUCConstructor.cs" />
+    <Compile Include="GoodsDescriptionEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GoodsDescriptionEditForm.Designer.cs">
+      <DependentUpon>GoodsDescriptionEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GoodsDescriptionList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GoodsDescriptionList.Designer.cs">
+      <DependentUpon>GoodsDescriptionList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GoodsRecordEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GoodsRecordEditForm.Designer.cs">
+      <DependentUpon>GoodsRecordEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ucContractorsList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucContractorsList.Designer.cs">
+      <DependentUpon>ucContractorsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucGoodsRecordsList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucGoodsRecordsList.Designer.cs">
+      <DependentUpon>ucGoodsRecordsList.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ContractorEditForm.resx">
+      <DependentUpon>ContractorEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GoodsDescriptionEditForm.resx">
+      <DependentUpon>GoodsDescriptionEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GoodsDescriptionList.resx">
+      <DependentUpon>GoodsDescriptionList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GoodsRecordEditForm.resx">
+      <DependentUpon>GoodsRecordEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="ucContractorsList.resx">
+      <DependentUpon>ucContractorsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucGoodsRecordsList.resx">
+      <DependentUpon>ucGoodsRecordsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HomeWorkCSharp.Classes\HomeWorkCSharp.Classes.csproj">
+      <Project>{3b9bb865-7042-417a-b120-8fc6017fcb34}</Project>
+      <Name>HomeWorkCSharp.Classes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
